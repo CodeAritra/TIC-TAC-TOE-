@@ -68,6 +68,7 @@ const checkwinner = () => {
     console.log("draw")
     showdraw();
     resetbtn.classList.add("hide");
+    c=0;
   }
 };
 
