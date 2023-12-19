@@ -6,7 +6,7 @@ let msg = document.querySelector("#msg");
 
 let turn1 = true;
 let win = false;
-let c=0;
+let moves = 0;
 
 const winpattern = [
   [0, 1, 2],
@@ -34,6 +34,7 @@ const resetGame = () => {
   turn1 = true;
   enableboxes();
   msgcontainer.classList.add("hide");
+  moves = 0;
 };
 
 const disableboxes = () => {
@@ -56,18 +57,21 @@ const checkwinner = () => {
     if (pos1 != "" && pos2 != "" && pos3 != "") {
       if (pos1 == pos2 && pos2 == pos3) {
         win = true;
-        showwinner(pos1);
-        resetbtn.classList.add("hide");
+        moves = 0;
+        console.log("win = " + win);
+        if (win == true) {
+          console.log("WIN");
+          showwinner(pos1);
+          resetbtn.classList.add("hide");
+          win = false;
+        }
       }
-    } 
+    }
   }
-  if(win==false){
-    c++;
-  }
-  if(c==9){
-    console.log("draw")
+
+  if (win == false && moves == 9) {
+    console.log("TIE");
     showdraw();
-    resetbtn.classList.add("hide");
   }
 };
 
@@ -77,9 +81,13 @@ boxes.forEach((box) => {
     if (turn1) {
       box.innerText = "X";
       turn1 = false;
+      moves++;
+      console.log(moves);
     } else {
       box.innerText = "O";
       turn1 = true;
+      moves++;
+      console.log(moves);
     }
     box.disabled = true;
     checkwinner();
