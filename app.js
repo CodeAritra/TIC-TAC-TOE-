@@ -72,11 +72,6 @@ const checkwinner = () => {
   if (win == false && moves == 9) {
     console.log("TIE");
     showdraw();
-<<<<<<< HEAD
-=======
-    resetbtn.classList.add("hide");
-    c=0;
->>>>>>> 84a936e92a16f6f2ec538070cb897e0f8760833f
   }
 };
 
